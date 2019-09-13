@@ -1,0 +1,135 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[ ]:
+
+
+# Import Dependencies
+import pandas as pd
+
+
+# In[ ]:
+
+
+# File to Load
+path = "budget_data.csv"
+
+path_df = pd.read_csv(path)
+path_df.head()
+
+
+# In[ ]:
+
+
+# Import the budget_data.csv file as a DataFrame
+print(path_df.columns)
+
+print(path_df.info())
+
+print(path_df.describe())
+
+print(path_df.head())
+
+
+# In[3]:
+
+
+months = len(path_df["Date"].unique())
+print(months)
+
+
+# In[4]:
+
+
+net = (path_df["Profit/Losses"].sum())
+print(net)
+
+
+# In[5]:
+
+
+#Average Change #1
+Average_Profit_Losses = path_df["Profit/Losses"].mean()
+print(Average_Profit_Losses)
+
+
+# In[6]:
+
+
+#Average Change #2
+Average = net / months
+print(Average)
+
+
+# In[13]:
+
+
+changes = []
+for indx, row in path_df.iterrows():
+  #print(indx, row['Date'], row['Profit/Losses'])
+  if (indx < 85):
+    change = path_df['Profit/Losses'][indx+1] - row['Profit/Losses']
+    changes.append(changes)
+    
+    
+increase = max(changes)
+decrease = min(changes)
+
+#maxChangeIndex = changes.index(increase)
+#minChangeIndex = changes.index(decrease)
+
+#path_df.iloc[maxChangeIndex + 1].Date
+#path_df.iloc[minChangeIndex + 1].Date
+
+#print(change)
+print("Increase",increase,"," "Decrease", decrease)
+
+
+# In[ ]:
+
+
+average_change = path_df[changes.append(changes)].sum/ months
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+
+
+
+# In[ ]:
+
+
+# style output
+output = (
+   f"\nFinancial Analysis: \n"
+   f"--------------------------\n"
+   f"Total Months:\n"
+   f"Net Total: \n" 
+   f"Average Change: \n"
+   f"Greatest Increase in Profits: \n"
+   f"Greatest Decrease in Profits: \n"
+# print results
+print(output)
+
+
+# In[ ]:
+
+
+# create txt file
+text_file = open("Output.txt", "w")
+text_file.write(output)
+text_file.close()
+
+
+# In[ ]:
+
+
+
+
